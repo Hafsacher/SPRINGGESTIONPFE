@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>List Etudiants</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+	<div>
+		<form th:action="@{/logout}" method="post">
+			<p>
+				Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+			</p>
+			<input type="submit" value="Sign Out" />
+		</form>
+	</div>
+	<div>
+		<h1>List of Etudiants</h1>
+	</div>
+	
+	<div>
+		<table class="table table-striped table-bordered">
+			<thead class="thead-dark">
+				<tr>
+					<th>Etudiant ID</th>
+					<th>E-mail</th>
+					<th>Prenom</th>
+					<th>Nom</th>
+					<th>Code apogee</th>
+					<th>Filiere</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="etudiant: ${listEtudiants}">
+					<td th:text="${etudiant.id}">Etudiant ID</td>
+					<td th:text="${etudiant.email}">E-mail</td>
+					<td th:text="${etudiant.prenom}">Prenom</td>
+					<td th:text="${etudiant.nom}">Nom</td>
+					<td th:text="${etudiant.codeApogee}">Code apogee</td>
+					<td th:text="${etudiant.filiere}">Filiere</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+</html>
